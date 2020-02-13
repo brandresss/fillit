@@ -37,6 +37,15 @@ t_list    reader(const int fd)
     }
 }
 
+void kabel(int size, t_list *tetrim, int size)
+{
+    char **maps;
+    maps = map(size);
+    recurs(maps, tetrim, size);
+
+}
+
+
 int     main (int argc, char *argv[]) 
 {
     ft_putchar('!');
