@@ -40,9 +40,15 @@ t_list    reader(const int fd)
 void kabel(int size, t_list *tetrim, int size)
 {
     char **maps;
-    maps = map(size);
-    recurs(maps, tetrim, size);
-
+    while(tetrim)
+    {
+        maps = map(size);
+        if(recurs(maps, tetrim, size) == 2)
+        {
+            size++;
+            free(map);
+        }
+    }
 }
 
 

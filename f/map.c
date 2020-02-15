@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
+/*   Updated: 2020/02/15 18:21:07 by brandres         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 char **map(int size)
@@ -14,7 +26,7 @@ char **map(int size)
     return(maps);
 }
 
-int suchka(t_list *tetrim, char **maps, int x, int y) 
+int suchka(t_list *tetrim, char **maps, int x, int y, int size) 
 {
     int i;
     int j;
@@ -23,7 +35,10 @@ int suchka(t_list *tetrim, char **maps, int x, int y)
     j = 1;
     while (i <= 6 && j <= 7)
     {
-        if (maps[tetrim->content[0] - '0' + x][tetrim->content[1] - '0' + y] != '.')
+        if ((tetrim->content[i] - '0' + x) > size || 
+        (tetrim->content[j] - '0' + y) > size)
+            return (2);
+         if (maps[tetrim->content[i] - '0' + x][tetrim->content[j] - '0' + y] != '.')
             return(0);  
         i = i + 2;
         j = j + 2;
@@ -31,29 +46,40 @@ int suchka(t_list *tetrim, char **maps, int x, int y)
     }
     return(1);
 }
-void get_full(t_list *tetrim, char **maps) 
+void get_full(t_list *tetrim, char **maps, int x, int y) 
 {
-
+    int i;
+    int j;
+    
+    i = 0;
+    j = 1;
+    while (i <= 6 && j <= 7)
+    {
+        maps[tetrim->content[i] - '0' + x][tetrim->content[j] - '0' + y] = tetrim->letter;
+    }
+    
 }
 
-char **recurs(char **maps, t_list *tetrim, int size)
+int recurs(char **maps, t_list *tetrim, int size)
 {
     int x;
     int y;
-    x = 0;
+    x = 0;                   
     y = 0;
    
     while(x < size && y < size)
     {
-        if (suchka(tetrim, maps, x, y))
+        if (suchka(tetrim, maps, x, y, size) == 1)
         {
-            get_full(tetrim, maps);
+            get_full(tetrim, maps, x, y);
             tetrim = tetrim->next;
             if (tetrim)
                 recurs(maps, tetrim, size);
         }
         else
         {
+            if (suchka(tetrim, maps, x, y, size) == 2)
+                return(2);
             if (x < size)
                 x++;
             else if (y < size)
@@ -65,6 +91,6 @@ char **recurs(char **maps, t_list *tetrim, int size)
     }
 
     //else if (x == size && y == size)
-    return (maps);
+    return (0);
 
 }
