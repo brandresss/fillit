@@ -20,5 +20,12 @@ typedef struct		s_list
 t_list      *create_tetrimino(char *buf, char letter);
 void	ft_lstadd(t_list **alst, t_list *new);
 void	ft_lstadd_end(t_list **alst, t_list *new);
+char    **map(int size);
+int     suchka(t_list *tetrim, char **maps, int x, int y, int size);
+void    get_full(t_list *tetrim, char **maps, int x, int y);
+int     recurs(char **maps, t_list *tetrim, int size);
+void    print_map(char **map, int size);
+void	kabel(int size, t_list *tetrim);
+t_list   *reader(const int fd);
 
 #endif
