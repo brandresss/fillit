@@ -6,6 +6,31 @@ void    ft_error(void)
     exit(EXIT_FAILURE);
 }
 
+char    *koordin(char *buf)
+{
+    int i;
+    int j;
+    char *koord;
+
+    koord = (char *)malloc(sizeof(char) * 9);
+    koord[8] = '\0';
+    i = 0;
+    j = 0;
+    //printf("buff:%s\n", buf);
+    while(i <= 19)
+    {
+        if(buf[i] == '#')
+        {
+            koord[j] = i / 5 + '0';
+
+            koord[j + 1] = i % 5 + '0';
+            j += 2;
+        }
+        i++;
+    }
+    //printf("%s\n", koord);
+    return(koord);
+}
 t_list   *reader(const int fd)
 {
     char    *buf;
@@ -17,7 +42,7 @@ t_list   *reader(const int fd)
     buf = ft_strnew(21);
     letter = 'A';
     list = NULL;
-    while (save == read(fd, buf, 21))
+    while ((save = read(fd, buf, 21)))
     {
         /* если прочитано не 20 и не 21 символ, то ошибка (наверно?)
         if (save != 20 && save != 21)
@@ -29,13 +54,16 @@ t_list   *reader(const int fd)
         }
         */
         // если списка не было, создаем его
+        //char *ttt = koord(buf);
+        //printf("%s\n", koordin(buf));
         if (list == NULL)
-            ft_lstadd(&list, create_tetrimino(buf, letter++));
+            list = create_tetrimino(koordin(buf), letter++);
         // если уже есть, то добавляем элемент в конец
         else
-            ft_lstadd_end(&list, create_tetrimino(buf, letter++));
+            ft_lstadd_end(&list, create_tetrimino(koordin(buf), letter++));
 
     }
+    printf("%s\n", list->content);
     return(list);
 }
 
@@ -45,7 +73,8 @@ void    kabel(int size, t_list *tetrim)
 
     maps = map(size);
     printf("4\n");
-   while (recurs(maps, tetrim, size) == 2)
+    printf("!str:%s!\n", tetrim->content);
+    while (recurs(maps, tetrim, size) == 2)
     {
         size++;
         free(*maps);
@@ -76,17 +105,17 @@ int     main (int argc, char **argv)
     {
         ft_error();
     }
-    reader(fd);
+    printf("1\n");
+    list = reader(fd);
     close(fd);
 
-    printf("1\n");
 
 
-    list = reader(fd);
 
     printf("2\n");
-
-    kabel(4, list);
+    printf("%s\n", list->content);
     printf("3\n");
+    kabel(4, list);
+
     return (0);
 }

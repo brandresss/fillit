@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/16 22:33:21 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/17 22:47:17 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ int     suchka(t_list *tetrim, char **maps, int x, int y, int size)
     j = 1;
     while (i <= 6 && j <= 7)
     {
-        if ((tetrim->content[i] - '0' + x) >= size ||
-        (tetrim->content[j] - '0' + y) >= size)
+        //printf("%d\n", tetrim->content[i] - '0' + x);
+
+        if ((tetrim->content[i] - '0' + y) >= size || \
+        (tetrim->content[j] - '0' + x) >= size)
             return (2);
-         if (maps[tetrim->content[i] - '0' + x][tetrim->content[j] - '0' + y] != '.')
+        printf("%d %d\n", tetrim->content[i] - '0' + x, tetrim->content[j] - '0' + y);
+        printf("%c\n", maps[tetrim->content[i] - '0' + x][tetrim->content[j] - '0' + y]);
+        if (maps[tetrim->content[i] - '0' + y][tetrim->content[j] - '0' + x] != '.')
             return(0);
         i = i + 2;
         j = j + 2;
@@ -57,11 +61,31 @@ void    get_full(t_list *tetrim, char **maps, int x, int y)
     j = 1;
     while (i <= 6 && j <= 7)
     {
-        maps[tetrim->content[i] - '0' + x][tetrim->content[j] - '0' + y] = tetrim->letter;
+        maps[tetrim->content[i] - '0' + y][tetrim->content[j] - '0' + x] = tetrim->letter;
         i += 2;
         j += 2;
     }
 
+}
+
+void    del_let(char **maps, char let)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while(maps[j] != NULL)
+    {
+        i = 0;
+        while(maps[j][i] != '\0')
+        {
+            if(maps[j][i] == let)
+                maps[j][i] = '.';
+            i++;
+        }
+        j++;
+    }
 }
 
 int     recurs(char **maps, t_list *tetrim, int size)
@@ -75,20 +99,25 @@ int     recurs(char **maps, t_list *tetrim, int size)
 
     while(x <= size && y <= size)
     {
-        if (suchka(tetrim, maps, x, y, size) == 1)
+        if ((save = suchka(tetrim, maps, x, y, size)) == 1)
         {
             get_full(tetrim, maps, x, y);
             tetrim = tetrim->next;
             if (tetrim)
             {
-                if((save = recurs(maps, tetrim, size)) == 9)
+                if(recurs(maps, tetrim, size) == 9)
                     return (9);
-                return(2);
+                else
+                {
+                    del_let(maps, tetrim->letter);
+                    save = 0;
+                }
+                //return(2);
             }
             else
                 return(9);
         }
-        if (save == 2)
+        if (save == 0)
         {
             if (suchka(tetrim, maps, x, y, size) == 2)
                 return(2);
