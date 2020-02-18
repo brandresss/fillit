@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 16:48:43 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/16 16:48:50 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:24:37 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_lstadd(t_list **alst, t_list *new)
 }
 
 // будет возвращать созданный элемент списка
-t_list      *create_tetrimino(char *buf, char letter)
+t_list      *create_tetrimino(char *buf, char maxx_x, char maxx_y, char letter)
 {
     int i;
     t_list  *element;
@@ -54,6 +54,8 @@ t_list      *create_tetrimino(char *buf, char letter)
         save--;
     }
     element->letter = letter;
+    element->max_x = maxx_x;
+    element->max_y = maxx_y;
     element->next = NULL;
     return(element);
 }

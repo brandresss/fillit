@@ -1,9 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 22:11:09 by brandres          #+#    #+#             */
+/*   Updated: 2020/02/18 22:28:32 by brandres         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 void    ft_error(void)
 {
     ft_putstr("error\n");
     exit(EXIT_FAILURE);
+}
+
+char    max_x(char *koord)
+{
+    int     i;
+    char     tmp;
+
+    i = 0;
+    while(i <= 6)
+    {
+        if(tmp < koord[i])
+            tmp = koord[i];
+        i += 2;
+    }
+    return(tmp);
+}
+
+char    max_y(char *koord)
+{
+    int     j;
+    char     tmp;
+
+    j = 1;
+    while(j <= 7)
+    {
+        if(tmp < koord[j])
+            tmp = koord[j];
+        j += 2;
+    }
+    return(tmp);
 }
 
 char    *koordin(char *buf)
@@ -40,21 +82,22 @@ char *null_pos(char *koord)
     int     tmp;
     i = 0;
     j = 1;
-    c = koord[i];
+    c = 3;
     while(i <= 6)
     {
-        if(c >= koord[i])
-            c = koord[i];
+        if(c > koord[i] - '0')
+            c = koord[i] - '0';
         i += 2;
     }
-    tmp = koord[j];
+    tmp = 3;
     while(j <= 7)
     {
-        if(tmp >= koord[j])
-            tmp = koord[j];
+        if(tmp > koord[j] - '0')
+            tmp = koord[j] - '0';
         j += 2;
     }
-    j = 0;
+    //printf("c tmp:%d %d\n", c, tmp);
+    j = 1;
     while(j <= 7)
     {
         koord[j] =  koord[j] - tmp;
@@ -66,6 +109,7 @@ char *null_pos(char *koord)
         koord[i] =  koord[i] - c;
         i += 2;
     }
+    //printf("koord:%s\n", koord);
     return(koord);
 }
 
@@ -95,13 +139,15 @@ t_list   *reader(const int fd)
         //char *ttt = koord(buf);
         //printf("%s\n", koordin(buf));
         if (list == NULL)
-            list = create_tetrimino(null_pos(koordin(buf)), letter++);
+            list = create_tetrimino(null_pos(koordin(buf)), \
+            max_x(null_pos(koordin(buf))), max_y(null_pos(koordin(buf))), letter++);
         // если уже есть, то добавляем элемент в конец
         else
-            ft_lstadd_end(&list, create_tetrimino(null_pos(koordin(buf)), letter++));
+            ft_lstadd_end(&list, create_tetrimino(null_pos(koordin(buf)), \
+            max_x(null_pos(koordin(buf))), max_y(null_pos(koordin(buf))), letter++));
 
     }
-    printf("%s\n", list->content);
+    //printf("list->content%s\n", list->content);
     return(list);
 }
 
@@ -119,6 +165,7 @@ void    kabel(int size, t_list *tetrim)
         free(maps);
         maps = map(size);
     }
+    printf("\n");
     print_map(maps, size);
     printf("5\n");
 }

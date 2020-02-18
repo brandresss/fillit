@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/17 22:47:17 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:38:32 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char    **map(int size)
     while (i < size)
     {
         maps[i] = (char *)malloc(sizeof(char) * (size + 1));
-        ft_memset(maps[i], 46, size + 1);
+        ft_memset(maps[i], 46, size);
         i++;
     }
     maps[i] = NULL;
@@ -42,9 +42,7 @@ int     suchka(t_list *tetrim, char **maps, int x, int y, int size)
         if ((tetrim->content[i] - '0' + y) >= size || \
         (tetrim->content[j] - '0' + x) >= size)
             return (2);
-        printf("%d %d\n", tetrim->content[i] - '0' + x, tetrim->content[j] - '0' + y);
-        printf("%c\n", maps[tetrim->content[i] - '0' + x][tetrim->content[j] - '0' + y]);
-        if (maps[tetrim->content[i] - '0' + y][tetrim->content[j] - '0' + x] != '.')
+        if (maps[tetrim->content[i] - '0' + y][tetrim->content[j] - '0' + x] != '.' && x <= )
             return(0);
         i = i + 2;
         j = j + 2;
@@ -102,6 +100,7 @@ int     recurs(char **maps, t_list *tetrim, int size)
         if ((save = suchka(tetrim, maps, x, y, size)) == 1)
         {
             get_full(tetrim, maps, x, y);
+            print_map(maps, size);
             tetrim = tetrim->next;
             if (tetrim)
             {
