@@ -31,6 +31,44 @@ char    *koordin(char *buf)
     //printf("%s\n", koord);
     return(koord);
 }
+
+char *null_pos(char *koord)
+{
+    int     i;
+    int     c;
+    int     j;
+    int     tmp;
+    i = 0;
+    j = 1;
+    c = koord[i];
+    while(i <= 6)
+    {
+        if(c >= koord[i])
+            c = koord[i];
+        i += 2;
+    }
+    tmp = koord[j];
+    while(j <= 7)
+    {
+        if(tmp >= koord[j])
+            tmp = koord[j];
+        j += 2;
+    }
+    j = 0;
+    while(j <= 7)
+    {
+        koord[j] =  koord[j] - tmp;
+        j += 2;
+    }
+    i = 0;
+    while(i <= 6)
+    {
+        koord[i] =  koord[i] - c;
+        i += 2;
+    }
+    return(koord);
+}
+
 t_list   *reader(const int fd)
 {
     char    *buf;
@@ -57,10 +95,10 @@ t_list   *reader(const int fd)
         //char *ttt = koord(buf);
         //printf("%s\n", koordin(buf));
         if (list == NULL)
-            list = create_tetrimino(koordin(buf), letter++);
+            list = create_tetrimino(null_pos(koordin(buf)), letter++);
         // если уже есть, то добавляем элемент в конец
         else
-            ft_lstadd_end(&list, create_tetrimino(koordin(buf), letter++));
+            ft_lstadd_end(&list, create_tetrimino(null_pos(koordin(buf)), letter++));
 
     }
     printf("%s\n", list->content);
