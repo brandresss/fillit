@@ -52,21 +52,4 @@ int     connections(char *arr)
     return (figure == 6 || figure == 8);
 }
 
-
-char **create_map(int *coordinates)
-{
-    int i;
-    int save;
-    int nol;
-    nol = 0;
-    i = 0;
-    save = 0;
-    while(coordinates[i] != '\0')
-    {
-        if ((i % 2 == 0) && coordinates[i] >= save)
-            nol = coordinates[i];
-        else if ((i % 2 != 0)
-
-    }
-
 }

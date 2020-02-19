@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/19 17:15:09 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:49:33 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int     suchka(t_list *tetrim, char **maps, int x, int y, int  size)
 
     i = 0;
     j = 1;
-    if((tetrim->max_y + y) > size + '0')
+    if((tetrim->max_y + y) > size - 1 + '0')
         return(2);
-    if((tetrim->max_x + x) > size + '0')
+    if((tetrim->max_x + x) > size - 1 + '0')
         return(0);
     while (i <= 6 && j <= 7)
     {
@@ -123,11 +123,11 @@ int     recurs(char **maps, t_list *tetrim, int size)
         if ((save = suchka(tetrim, maps, x, y, size)) == 1)
         {
             get_full(tetrim, maps, x, y);
-            print_map(maps, size);
-            tetrim = tetrim->next;
-            if (tetrim)
+           // print_map(maps, size);
+            //tetrim = tetrim->next;
+            if (tetrim->next)
             {
-                if(recurs(maps, tetrim, size) == 9)
+                if(recurs(maps, tetrim->next, size) == 9)
                     return (9);
                 else
                 {
@@ -141,8 +141,13 @@ int     recurs(char **maps, t_list *tetrim, int size)
         }
         if (save != 1)
         {
-            if (suchka(tetrim, maps, x, y, size) == 2)
+            //if (suchka(tetrim, maps, x, y, size) == 2)
+            if (save == 2)
+            {
+                //del_let(maps,tetrim->letter);
+                //printf("after del\n%s\n", maps[0]);
                 return(2);
+            }
             if (x < size)
                 x++;
             else if (y < size)

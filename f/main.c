@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:11:09 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/19 17:19:05 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:48:50 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,26 @@ t_list   *reader(const int fd)
     return(list);
 }
 
+/*void    frree(char **maps, int size)
+{
+    int i;
+
+    i = 0;
+    //printf("size:%d\n", size);
+
+    while(maps[i] != NULL)
+    {
+        free(*maps);
+        maps++;
+
+
+        i++;
+    }
+
+
+    //free(*maps);
+}*/
+
 void    kabel(t_list *tetrim)
 {
     char **maps;
@@ -158,27 +178,30 @@ void    kabel(t_list *tetrim)
 
     size = 2;
     maps = map(size);
-    printf("4\n");
-    printf("!str:%s!\n", tetrim->content);
+    //printf("4\n");
+    //printf("!str:%s!\n", tetrim->content);
     while (recurs(maps, tetrim, size) == 2)
     {
-        size++;
-        free(*maps);
+
+
+        //frree(maps, size);
         free(maps);
-        printf("maps after free\n");
-        print_map(maps, size);
-        printf("maps after free end\n");
+        size++;
+
+        //printf("maps after free\n");
+        //print_map(maps, size);
+        //printf("maps after free end\n");
         maps = map(size);
     }
     printf("\n");
     print_map(maps, size);
-    printf("5\n");
+    //printf("5\n");
 }
 
 
 int     main (int argc, char **argv)
 {
-     printf("0\n");
+     //printf("0\n");
     // ft_putchar('!');
     int fd;
     t_list *list;
@@ -195,16 +218,16 @@ int     main (int argc, char **argv)
     {
         ft_error();
     }
-    printf("1\n");
+   // printf("1\n");
     list = reader(fd);
     close(fd);
 
 
 
 
-    printf("2\n");
-    printf("%s\n", list->content);
-    printf("3\n");
+    //printf("2\n");
+    //printf("%s\n", list->content);
+   // printf("3\n");
     kabel(list);
 
     return (0);
