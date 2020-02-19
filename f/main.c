@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:11:09 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/18 22:28:32 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 17:19:05 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    ft_error(void)
     exit(EXIT_FAILURE);
 }
 
-char    max_x(char *koord)
+char    max_y(char *koord)
 {
     int     i;
     char     tmp;
@@ -33,7 +33,7 @@ char    max_x(char *koord)
     return(tmp);
 }
 
-char    max_y(char *koord)
+char    max_x(char *koord)
 {
     int     j;
     char     tmp;
@@ -140,21 +140,23 @@ t_list   *reader(const int fd)
         //printf("%s\n", koordin(buf));
         if (list == NULL)
             list = create_tetrimino(null_pos(koordin(buf)), \
-            max_x(null_pos(koordin(buf))), max_y(null_pos(koordin(buf))), letter++);
+            max_y(null_pos(koordin(buf))), max_x(null_pos(koordin(buf))), letter++);
         // если уже есть, то добавляем элемент в конец
         else
             ft_lstadd_end(&list, create_tetrimino(null_pos(koordin(buf)), \
-            max_x(null_pos(koordin(buf))), max_y(null_pos(koordin(buf))), letter++));
+            max_y(null_pos(koordin(buf))), max_x(null_pos(koordin(buf))), letter++));
 
     }
     //printf("list->content%s\n", list->content);
     return(list);
 }
 
-void    kabel(int size, t_list *tetrim)
+void    kabel(t_list *tetrim)
 {
     char **maps;
+    int     size;
 
+    size = 2;
     maps = map(size);
     printf("4\n");
     printf("!str:%s!\n", tetrim->content);
@@ -163,6 +165,9 @@ void    kabel(int size, t_list *tetrim)
         size++;
         free(*maps);
         free(maps);
+        printf("maps after free\n");
+        print_map(maps, size);
+        printf("maps after free end\n");
         maps = map(size);
     }
     printf("\n");
@@ -200,7 +205,7 @@ int     main (int argc, char **argv)
     printf("2\n");
     printf("%s\n", list->content);
     printf("3\n");
-    kabel(4, list);
+    kabel(list);
 
     return (0);
 }

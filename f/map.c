@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/18 22:38:32 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 17:15:09 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char    **map(int size)
     return(maps);
 }
 
-int     suchka(t_list *tetrim, char **maps, int x, int y, int size)
+
+/*int     suchka(t_list *tetrim, char **maps, int x, int y, int size)
 {
     int i;
     int j;
@@ -49,7 +50,29 @@ int     suchka(t_list *tetrim, char **maps, int x, int y, int size)
 
     }
     return(1);
+}*/
+
+int     suchka(t_list *tetrim, char **maps, int x, int y, int  size)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 1;
+    if((tetrim->max_y + y) > size + '0')
+        return(2);
+    if((tetrim->max_x + x) > size + '0')
+        return(0);
+    while (i <= 6 && j <= 7)
+    {
+        if (maps[tetrim->content[i] - '0' + y][tetrim->content[j] - '0' + x] != '.')
+            return(0);
+        i += 2;
+        j += 2;
+    }
+    return(1);
 }
+
 void    get_full(t_list *tetrim, char **maps, int x, int y)
 {
     int i;
@@ -116,7 +139,7 @@ int     recurs(char **maps, t_list *tetrim, int size)
             else
                 return(9);
         }
-        if (save == 0)
+        if (save != 1)
         {
             if (suchka(tetrim, maps, x, y, size) == 2)
                 return(2);

@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:17:01 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/18 22:17:44 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 17:11:54 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int     	suchka(t_list *tetrim, char **maps, int x, int y, int size);
 void    	get_full(t_list *tetrim, char **maps, int x, int y);
 int     	recurs(char **maps, t_list *tetrim, int size);
 void    	print_map(char **map, int size);
-void		kabel(int size, t_list *tetrim);
+void		kabel(t_list *tetrim);
 t_list   	*reader(const int fd);
 
 #endif
