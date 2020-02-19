@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:17:01 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/19 23:12:22 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 23:13:25 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include ".libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct		s_list
 {

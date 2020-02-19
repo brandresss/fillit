@@ -6,7 +6,7 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:11:09 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/19 23:09:46 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 23:21:55 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,6 @@ void    kabel(t_list *tetrim)
     }
     printf("\n");
     print_map(maps, size);
-    int j = 0;
-    while (j < size)
-        printf("%zu\n", ft_strlen(maps[j++]));
     //printf("5\n");
 }
 
