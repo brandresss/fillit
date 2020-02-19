@@ -1,4 +1,4 @@
-#include "fillit.h"
+#include "includes/fillit.h"
 
 int     checker(int save, char *arr)
 {
@@ -11,7 +11,7 @@ int     checker(int save, char *arr)
     {
         if (i % 5 < 4)
         {
-            if (arr[i] != '.' || arr[i] != '#')
+            if (arr[i] != '.' && arr[i] != '#')
                 return (0);
             if (arr[i] == '#' && ++hash > 4)
                 return (1);
@@ -50,6 +50,4 @@ int     connections(char *arr)
         i++;
     }
     return (figure == 6 || figure == 8);
-}
-
 }

@@ -6,22 +6,24 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/19 18:49:33 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/19 23:09:07 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "includes/fillit.h"
 
 char    **map(int size)
 {
     int i;
-    i = 0;
     char **maps;
+
+    i = 0;
     maps = (char **)malloc(sizeof(char *) * (size + 1));
     while (i < size)
     {
         maps[i] = (char *)malloc(sizeof(char) * (size + 1));
         ft_memset(maps[i], 46, size);
+        maps[i][size] =  '\0';
         i++;
     }
     maps[i] = NULL;
