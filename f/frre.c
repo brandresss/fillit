@@ -6,7 +6,7 @@
 /*   By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 16:48:30 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/21 21:33:38 by sofya_stepa      ###   ########.fr       */
+/*   Updated: 2020/02/22 01:31:05 by sofya_stepa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ char	*null_pos(char *koord)
 			tmp = koord[j] - '0';
 		j += 2;
 	}
-	//printf("c tmp:%d %d\n", c, tmp);
-	j = 1;
+	/*j = 1;
 	while (j <= 7)
 	{
 		koord[j] = koord[j] - tmp;
@@ -100,6 +99,27 @@ char	*null_pos(char *koord)
 	{
 		koord[i] = koord[i] - c;
 		i += 2;
+	}*/
+	return (right_pos(koord, tmp, c));
+}
+
+char	*right_pos(char *koord, int tmp, int c)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 1;
+	while (j <= 7)
+	{
+		koord[j] = koord[j] - tmp;
+		j += 2;
+	}
+	while (i <= 6)
+	{
+		koord[i] = koord[i] - c;
+		i += 2;
 	}
 	return (koord);
 }
+

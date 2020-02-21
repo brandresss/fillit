@@ -6,7 +6,7 @@
 /*   By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:11:09 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/21 23:36:11 by sofya_stepa      ###   ########.fr       */
+/*   Updated: 2020/02/22 01:15:52 by sofya_stepa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_list	*reader(const int fd)
 	list = NULL;
 	while ((save = read(fd, buf, 21)))
 	{
-	// если прочитано не 20 и не 21 символ, то ошибка (наверно?)
 		if (save != 20 && save != 21)
 			ft_error();
 		if ((checker(save, buf)) != 5)

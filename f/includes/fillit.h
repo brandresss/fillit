@@ -6,7 +6,7 @@
 /*   By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:17:01 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/21 23:36:58 by sofya_stepa      ###   ########.fr       */
+/*   Updated: 2020/02/22 01:35:58 by sofya_stepa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char	*koordin(char *buf);
 char	max_y(char *koord);
 char	max_x(char *koord);
 void	del_let(char **maps, char let);
+char	*right_pos(char *koord, int tmp, int c);
 
 #endif
