@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 22:17:01 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/19 23:13:25 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/21 23:36:58 by sofya_stepa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,10 @@ void	kabel(t_list *tetrim);
 t_list	*reader(const int fd);
 int		checker(int save, char *arr);
 int		connections(char *arr);
+char	*null_pos(char *koord);
+char	*koordin(char *buf);
+char	max_y(char *koord);
+char	max_x(char *koord);
+void	del_let(char **maps, char let);
 
 #endif

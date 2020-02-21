@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brandres <brandres@student.42.fr>          +#+  +:+       +#+         #
+#    By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/02 16:24:29 by brandres          #+#    #+#              #
-#    Updated: 2020/02/19 23:19:17 by brandres         ###   ########.fr        #
+#    Updated: 2020/02/21 21:32:48 by sofya_stepa      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = lst.c map.c main.c validation.c
+SRC = lst.c map.c main.c validation.c frre.c
 
-OBJ = lst.o map.o main.o validation.o
+OBJ = lst.o map.o main.o validation.o frre.o
 
 
 LBFT = libft/

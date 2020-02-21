@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:36:58 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/20 18:00:53 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/21 23:36:23 by sofya_stepa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,6 @@ void	get_full(t_list *tetrim, char **maps, int x, int y)
 		j += 2;
 	}
 
-}
-
-void	del_let(char **maps, char let)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (maps[j] != NULL)
-	{
-		i = 0;
-		while (maps[j][i] != '\0')
-		{
-			if (maps[j][i] == let)
-				maps[j][i] = '.';
-			i++;
-		}
-		j++;
-	}
 }
 
 int		recurs(char **maps, t_list *tetrim, int size)
