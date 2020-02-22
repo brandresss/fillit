@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+        */
+/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 22:11:09 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/22 01:15:52 by sofya_stepa      ###   ########.fr       */
+/*   Created: 2020/02/22 14:48:01 by brandres          #+#    #+#             */
+/*   Updated: 2020/02/22 17:02:28 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,17 @@ void	ft_error(void)
 t_list	*reader(const int fd)
 {
 	char	*buf;
-	int		save;
+	int		save[2];
 	char	letter;
 	t_list	*list;
-	int		save1;
 
-	save1 = 0;
+	save[1] = 0;
 	buf = ft_strnew(21);
 	letter = 'A';
 	list = NULL;
-	while ((save = read(fd, buf, 21)))
+	while ((save[0] = read(fd, buf, 21)))
 	{
-		if (save != 20 && save != 21)
-			ft_error();
-		if ((checker(save, buf)) != 5)
-		{
-			ft_strdel(&buf);
-			ft_error();
-		}
+		for_err(buf, save[0]);
 		if (list == NULL)
 			list = create_tetrimino(null_pos(koordin(buf)), \
 			max_y(null_pos(koordin(buf))), max_x(null_pos(koordin(buf))), \
@@ -47,9 +40,9 @@ t_list	*reader(const int fd)
 			ft_lstadd_end(&list, create_tetrimino(null_pos(koordin(buf)), \
 			max_y(null_pos(koordin(buf))), max_x(null_pos(koordin(buf))), \
 			letter++));
-		save1 = save;
+		save[1] = save[0];
 	}
-	if ((save == 0 && save1 == 21) || (save1 == 0 && save == 0))
+	if ((save[0] == 0 && save[1] == 21) || (save[1] == 0 && save[0] == 0))
 		ft_error();
 	return (list);
 }

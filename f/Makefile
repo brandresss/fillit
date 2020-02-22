@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sofya_stepanova <sofya_stepanova@studen    +#+  +:+       +#+         #
+#    By: brandres <brandres@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/02 16:24:29 by brandres          #+#    #+#              #
-#    Updated: 2020/02/21 21:32:48 by sofya_stepa      ###   ########.fr        #
+#    Updated: 2020/02/22 18:27:02 by brandres         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
