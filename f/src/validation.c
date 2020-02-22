@@ -6,11 +6,11 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 16:05:23 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/22 18:15:30 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/22 18:50:11 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fillit.h"
+#include "../includes/fillit.h"
 
 int		checker(int save, char *arr)
 {

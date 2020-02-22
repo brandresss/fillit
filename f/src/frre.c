@@ -6,11 +6,11 @@
 /*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 16:48:30 by brandres          #+#    #+#             */
-/*   Updated: 2020/02/22 14:45:40 by brandres         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:13:53 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fillit.h"
+#include "../includes/fillit.h"
 
 char	max_y(char *koord)
 {
@@ -18,6 +18,7 @@ char	max_y(char *koord)
 	char	tmp;
 
 	i = 0;
+	tmp = '0';
 	while (i <= 6)
 	{
 		if (tmp < koord[i])
@@ -33,6 +34,7 @@ char	max_x(char *koord)
 	char	tmp;
 
 	j = 1;
+	tmp = '0';
 	while (j <= 7)
 	{
 		if (tmp < koord[j])

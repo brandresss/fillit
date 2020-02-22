@@ -6,7 +6,7 @@
 #    By: brandres <brandres@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/02 16:24:29 by brandres          #+#    #+#              #
-#    Updated: 2020/02/22 18:27:02 by brandres         ###   ########.fr        #
+#    Updated: 2020/02/22 18:42:44 by brandres         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LBFT)
-	gcc -Wall -Wextra -Werror -o $(NAME) $(SRC) -I includes/fillit.h -L. libft/libft.a
+	gcc -Wall -Wextra -Werror -o $(NAME) src/lst.c src/map.c src/main.c \
+	src/validation.c src/frre.c -I includes/fillit.h -L. libft/libft.a
 clean:
 	    /bin/rm -f *.o
 		make -C $(LBFT) clean
